@@ -4,5 +4,9 @@ var axios_1 = require("axios");
 var url = 'http://jsonplaceholder.typicode.com/todos/1';
 axios_1["default"].get(url)
     .then(function (response) {
-    console.log(response.data);
+    var todo = response.data;
+    var id = todo.id;
+    var title = todo.title;
+    var finished = todo.completed ? 'Yes' : 'No';
+    console.log("\n            TODO with id " + id + " and title \"" + title + "\"\n            Is finished? " + finished + "\n        ");
 });
