@@ -1,8 +1,8 @@
 import faker from 'faker';
 
 export class User {
-    name: string;
-    location: {
+    public name: string;
+    public location: {
         latitude: number,
         longitude: number,
     };

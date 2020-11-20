@@ -1,9 +1,9 @@
 import faker from 'faker';
 
 export class Company {
-    name: string;
-    catchPhrase: string;
-    location: {
+    public name: string;
+    public catchPhrase: string;
+    public location: {
         latitude: number,
         longitude: number,
     };
