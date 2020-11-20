@@ -8,11 +8,15 @@ export class User {
     };
 
     constructor() {
-        this.name = faker.name.firstName();
+        this.name = faker.name.firstName() + ` ` + faker.name.lastName();
 
         this.location = {
             latitude: parseFloat(faker.address.latitude()),
             longitude: parseFloat(faker.address.longitude()),
         };
+    }
+
+    public getMarkerContent(): string {
+        return `<strong>` + this.name + `</strong>`;
     }
 }

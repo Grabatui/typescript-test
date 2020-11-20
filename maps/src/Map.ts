@@ -3,6 +3,7 @@ interface Mappable {
         latitude: number;
         longitude: number;
     };
+    getMarkerContent(): string;
 };
 
 export class Map {
@@ -18,13 +19,21 @@ export class Map {
         });
     }
 
-    addMarker(entity: Mappable) {
-        new google.maps.Marker({
+    addMarker(entity: Mappable): void {
+        const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
                 lat: entity.location.latitude,
                 lng: entity.location.longitude,
             },
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+            content: entity.getMarkerContent(),
+        });
+
+        marker.addListener(`click`, () => {
+            infoWindow.open(this.googleMap, marker);
         });
     }
 }

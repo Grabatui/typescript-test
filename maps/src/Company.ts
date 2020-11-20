@@ -17,4 +17,8 @@ export class Company {
             longitude: parseFloat(faker.address.longitude()),
         };
     }
+
+    public getMarkerContent(): string {
+        return `<strong>` + this.name + `</strong><br>` + this.catchPhrase;
+    }
 }
