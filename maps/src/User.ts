@@ -1,6 +1,7 @@
+import {Mappable} from './interfaces';
 import faker from 'faker';
 
-export class User {
+export class User implements Mappable {
     public name: string;
     public location: {
         latitude: number,

@@ -1,10 +1,4 @@
-interface Mappable {
-    location: {
-        latitude: number;
-        longitude: number;
-    };
-    getMarkerContent(): string;
-};
+import {Mappable} from './interfaces';
 
 export class Map {
     private googleMap: google.maps.Map;

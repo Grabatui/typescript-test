@@ -1,6 +1,7 @@
+import {Mappable} from './interfaces';
 import faker from 'faker';
 
-export class Company {
+export class Company implements Mappable {
     public name: string;
     public catchPhrase: string;
     public location: {
