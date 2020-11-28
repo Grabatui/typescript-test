@@ -1,29 +1,13 @@
-class Sorter {
-    collection: number[];
+import {Sorter} from './Sorter';
+import {NumbersCollection} from './NumbersCollection';
+import {CharactersCollection} from './CharactersCollection';
 
-    constructor(collection: number[]) {
-        this.collection = collection;
-    }
+const numbers = new NumbersCollection([10, 3, -5, 0]);
+const numberSorter = new Sorter(numbers);
+numberSorter.sort();
+console.log(numbers.data);
 
-    sort(): void {
-        let temporaryElement;
-        const {length} = this.collection;
-
-        for (let i = 0; i < length; i++) {
-            for (let j = 0; j < length - i - 1; j++) {
-                if (this.collection[j] > this.collection[j + 1]) {
-                    temporaryElement = this.collection[j];
-
-                    this.collection[j] = this.collection[j + 1];
-
-                    this.collection[j + 1] = temporaryElement;
-                }
-            }
-        }
-    }
-}
-
-const sorter = new Sorter([10, 3, -5, 0]);
-sorter.sort();
-
-console.log(sorter.collection);
+const characters = new CharactersCollection('pLaXIKqd');
+const charactersSorter = new Sorter(characters);
+charactersSorter.sort();
+console.log(characters.data);
