@@ -1,9 +1,12 @@
 import { LinkedList } from "./LinkedList";
+import { Sorter } from "./Sorter";
 
-export class LinkedListCollection implements Sortable {
+export class LinkedListCollection extends Sorter {
     constructor(
         public data: LinkedList
-    ) {}
+    ) {
+        super();
+    }
 
     get length(): number {
         return this.data.length;
