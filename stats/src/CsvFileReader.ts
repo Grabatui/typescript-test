@@ -1,14 +1,14 @@
 import fs from 'fs';
 
+import {Reader} from './interfaces';
 
-export abstract class CsvFileReader<T> {
-    public data: T[] = [];
+
+export class CsvFileReader implements Reader {
+    public data: string[][] = [];
 
     constructor(
         public filename: string
     ) {}
-
-    abstract mapRow(row: string[]): T;
 
     read(): void {
         const matches = fs.readFileSync(this.filename, {
@@ -19,7 +19,6 @@ export abstract class CsvFileReader<T> {
             .split(`\n`)
             .map((row: string): string[] => {
                 return row.split(`,`);
-            })
-            .map(this.mapRow);
+            });
     }
 }
