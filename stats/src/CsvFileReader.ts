@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import {Reader} from './interfaces';
+import { Reader } from './interfaces';
 
 
 export class CsvFileReader implements Reader {
