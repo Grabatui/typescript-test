@@ -2,7 +2,11 @@ import {User} from './models/User';
 
 
 const user = new User({
-    age: 20,
-    name: `Test Test`,
+    id: 2,
+    name: `Test Test 2`,
+    age: 30,
 });
 
+user.save();
+
+console.log(user);
