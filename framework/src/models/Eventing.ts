@@ -1,7 +1,7 @@
 import {User} from './User';
 
 
-type Callback = (user: User) => void;
+type Callback = () => void;
 
 export class Eventing {
     private events: {[key: string]: Callback[]} = {};
@@ -20,7 +20,7 @@ export class Eventing {
         }
 
         for (const eventCallback of this.events[eventName]) {
-            eventCallback.call(this, this);
+            eventCallback.call(this);
         }
     }
 }

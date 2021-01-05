@@ -7,4 +7,4 @@ const user = new User({
     age: 30,
 });
 
-console.log(user);
+user.set({name: `Test Test`});

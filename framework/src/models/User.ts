@@ -14,4 +14,22 @@ export class User {
     constructor(data: UserProperties) {
         this.attributes = new Attributes<UserProperties>(data);
     }
+
+    get on() {
+        return this.events.on.bind(this.events);
+    }
+
+    get trigger() {
+        return this.events.trigger.bind(this.events);
+    }
+
+    get get() {
+        return this.attributes.get.bind(this.attributes);
+    }
+
+    set(update: UserProperties): void {
+        this.attributes.set(update);
+
+        this.trigger(`change`);
+    }
 }
