@@ -2,12 +2,13 @@ import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
 import { UserProperties } from '../interfaces/UserProperties';
+import { AxiosResponse } from 'axios';
 
 
 export class User {
     public events: Eventing = new Eventing();
 
-    public sync: Sync<UserProperties> = new Sync<UserProperties>(`http://localhost:3000`);
+    public sync: Sync<UserProperties> = new Sync<UserProperties>(`http://localhost:3000/users`);
 
     public attributes: Attributes<UserProperties>;
 
@@ -31,5 +32,17 @@ export class User {
         this.attributes.set(update);
 
         this.trigger(`change`);
+    }
+
+    async fetch() {
+        const id = this.get(`id`);
+
+        if (typeof id !== `number`) {
+            throw new Error(`Cannot fetch without an id`);
+        }
+
+        return this.sync
+            .fetch(id)
+            .then((response: AxiosResponse) => this.set(response.data));
     }
 }
