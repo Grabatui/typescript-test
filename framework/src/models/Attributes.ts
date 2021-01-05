@@ -7,6 +7,10 @@ export class Attributes<T> {
         return this.data[key];
     }
 
+    public getAll(): T {
+        return this.data;
+    }
+
     public set(updateData: T): void {
         Object.assign(this.data, updateData);
     }

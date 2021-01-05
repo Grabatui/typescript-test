@@ -16,25 +16,29 @@ export class User {
         this.attributes = new Attributes<UserProperties>(data);
     }
 
-    get on() {
+    public get on() {
         return this.events.on.bind(this.events);
     }
 
-    get trigger() {
+    public get trigger() {
         return this.events.trigger.bind(this.events);
     }
 
-    get get() {
+    public get get() {
         return this.attributes.get.bind(this.attributes);
     }
 
-    set(update: UserProperties): void {
+    public get getAll() {
+        return this.attributes.getAll.bind(this.attributes);
+    }
+
+    public set(update: UserProperties): void {
         this.attributes.set(update);
 
         this.trigger(`change`);
     }
 
-    async fetch() {
+    public async fetch() {
         const id = this.get(`id`);
 
         if (typeof id !== `number`) {
@@ -44,5 +48,12 @@ export class User {
         return this.sync
             .fetch(id)
             .then((response: AxiosResponse) => this.set(response.data));
+    }
+
+    public save(): void {
+        this.sync
+            .save(this.getAll())
+            .then((response: AxiosResponse) => this.trigger(`save`))
+            .catch(() => this.trigger(`error`));
     }
 }
