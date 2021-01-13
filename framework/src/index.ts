@@ -1,7 +1,7 @@
 import {User} from './models/User';
 
 
-const user = new User({
+const user = User.make({
     id: 2,
 });
 
