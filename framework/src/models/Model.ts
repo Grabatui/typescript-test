@@ -1,24 +1,7 @@
-import { AxiosPromise, AxiosResponse } from "axios";
-
-interface Attributes<T> {
-    get<K extends keyof T>(key: K): T[K];
-
-    getAll(): T;
-
-    set(updateData: T): void;
-}
-
-interface Sync<T> {
-    fetch(id: number): AxiosPromise;
-
-    save(data: T): AxiosPromise;
-}
-
-interface Events {
-    on(eventName: string, callback: () => void): void;
-
-    trigger(eventName: string): void;
-}
+import { AxiosResponse } from "axios";
+import { Events } from "../interfaces/Events";
+import { Sync } from "../interfaces/Sync";
+import { Attributes } from "./Attributes";
 
 interface HasId {
     id?: number;

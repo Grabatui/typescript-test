@@ -1,14 +1,16 @@
-import {User} from './models/User';
+import { UserProperties } from "./interfaces/UserProperties";
+import { Collection } from "./models/Collection";
+import { User } from "./models/User";
 
+const users = new Collection<User, UserProperties>(
+    `http://localhost:3000/users`,
+    (userData: UserProperties) => User.make(userData)
+);
 
-const user = User.make({
-    id: 2,
-});
+users.on(`parsed`, function () {
+    console.log(this);
+})
 
-console.log(`before`);
+users.fetch();
 
-user.fetch().then(() => {
-    console.log(user);
-});
-
-console.log(`after`);
+console.log(users.models);
