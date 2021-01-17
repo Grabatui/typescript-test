@@ -31,21 +31,13 @@ export class Model<T extends HasId> {
         private events: Events
     ) {}
 
-    public get on() {
-        return this.events.on.bind(this.events);
-    }
+    public on = this.events.on;
 
-    public get trigger() {
-        return this.events.trigger.bind(this.events);
-    }
+    public trigger = this.events.trigger;
 
-    public get get() {
-        return this.attributes.get.bind(this.attributes);
-    }
+    public get = this.attributes.get;
 
-    public get getAll() {
-        return this.attributes.getAll.bind(this.attributes);
-    }
+    public getAll = this.attributes.getAll;
 
     public set(update: T): void {
         this.attributes.set(update);
