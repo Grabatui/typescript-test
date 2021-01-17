@@ -1,6 +1,3 @@
-import {User} from './User';
-
-
 type Callback = () => void;
 
 export class Eventing {
