@@ -1,11 +1,6 @@
-import { User } from "./models/User";
+import { UserForm } from './views/UserForm';
 
-const users = User.makeCollection();
+const element = document.getElementById(`root`);
 
-users.on(`parsed`, function () {
-    console.log(this);
-})
-
-users.fetch();
-
-console.log(users.models);
+const userForm = new UserForm(element);
+userForm.render();
