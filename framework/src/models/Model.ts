@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Events } from "../interfaces/Events";
 import { Sync } from "../interfaces/Sync";
-import { Attributes } from "./Attributes";
+import { Attributes } from "../interfaces/Attributes";
 
 interface HasId {
     id?: number;
@@ -14,13 +14,13 @@ export class Model<T extends HasId> {
         private events: Events
     ) {}
 
-    public on = this.events.on;
+    public on = this.events.on.bind(this.events);
 
-    public trigger = this.events.trigger;
+    public trigger = this.events.trigger.bind(this.events);
 
-    public get = this.attributes.get;
+    public get = this.attributes.get.bind(this.attributes);
 
-    public getAll = this.attributes.getAll;
+    public getAll = this.attributes.getAll.bind(this.attributes);
 
     public set(update: T): void {
         this.attributes.set(update);
