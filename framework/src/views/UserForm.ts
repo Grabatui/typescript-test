@@ -2,7 +2,7 @@ import { User } from '../models/User';
 
 export class UserForm {
     constructor(
-        public parent: Element,
+        public parent: HTMLElement,
         public model: User
     ) {
         this.setModelEvents(model);
@@ -55,6 +55,10 @@ export class UserForm {
 
     private setName(): void {
         const nameInput = this.parent.querySelector(`.js-name_input`);
+
+        if ( ! nameInput) {
+            return;
+        }
 
         this.model.set({
             name: nameInput.value,

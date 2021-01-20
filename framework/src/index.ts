@@ -8,5 +8,10 @@ const user = User.make({
 
 const element = document.getElementById(`root`);
 
-const userForm = new UserForm(element, user);
-userForm.render();
+if (element) {
+    const userForm = new UserForm(element, user);
+    userForm.render();
+} else {
+    throw new Error(`Root element not found`);
+    
+}
