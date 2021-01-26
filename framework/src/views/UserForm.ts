@@ -3,25 +3,22 @@ import { User } from '../models/User';
 import { View } from './View';
 
 export class UserForm extends View<User, UserProperties> {
-    public eventsMap(): { [key: string]: () => void } {
+    public getEvents(): { [key: string]: () => void } {
         return {
             'click:.js-set_name': this.setName.bind(this),
             'click:.js-set_age': this.setRandomAge.bind(this),
+            'click:.js-save_user': this.saveUser.bind(this),
         };
     }
 
     protected template(): string {
         return `
         <div>
-            <h1>User Form</h1>
-
-            <div><strong>User name:</strong> ${this.model.get(`name`)}</div>
-            <div><strong>User age:</strong> ${this.model.get(`age`)}</div>
-
-            <input class="js-name_input" />
+            <input class="js-name_input" placeholder="${this.model.get(`name`)}" />
 
             <button class="js-set_name">Change name</button>
             <button class="js-set_age">Set random age</button>
+            <button class="js-save_user">Save user</button>
         </div>
         `;
     }
@@ -42,5 +39,9 @@ export class UserForm extends View<User, UserProperties> {
         this.model.set({
             name: nameInput.value,
         });
+    }
+
+    private saveUser(): void {
+        this.model.save();
     }
 }

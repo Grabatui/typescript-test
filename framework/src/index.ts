@@ -1,5 +1,5 @@
-import { UserForm } from './views/UserForm';
 import { User } from './models/User';
+import { UserEdit } from './views/UserEdit';
 
 const user = User.make({
     name: 'Name',
@@ -9,9 +9,8 @@ const user = User.make({
 const element = document.getElementById(`root`);
 
 if (element) {
-    const userForm = new UserForm(element, user);
-    userForm.render();
+    const userEdit = new UserEdit(element, user);
+    userEdit.render();
 } else {
     throw new Error(`Root element not found`);
-    
 }
